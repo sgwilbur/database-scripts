@@ -1,0 +1,27 @@
+
+select username, default_tablespace, temporary_tablespace from dba_users
+	where username like 'TI%';
+
+select file_name, tablespace_name from dba_data_files;
+
+select tablespace_name, contents
+	from dba_tablespaces;
+
+
+DROP USER ti_PROD_m CASCADE;
+DROP USER ti_PROD_u1 CASCADE;
+DROP USER ti_prod_u2 CASCADE;
+
+
+
+alter tablespace ti_dev coalesce;
+
+
+alter database datafile '<full_file_name>' resize <size>M;
+
+alter database datafile '/tmp/TIdb/ti_dev03.dbf' resize 5M;
+alter database datafile '/tmp/TIdb/ti_dev04.dbf' resize 20000M;
+
+DROP TABLESPACE import INCLUDING CONTENTS AND DATAFILES CASCADE CONSTRAINTS;
+
+DROP TABLESPACE temp_ti INCLUDING CONTENTS AND DATAFILES CASCADE CONSTRAINTS;

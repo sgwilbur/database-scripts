@@ -1,0 +1,5 @@
+AS THE DBA:
+select * from dba_sys_privs where grantee = 'CQMASTR';
+
+AS THE USER THEMSELVES:
+select * from user_role_privs;

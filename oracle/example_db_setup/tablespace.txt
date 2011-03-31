@@ -1,0 +1,70 @@
+
+*************************************************************************************
+   CREATE [UNDO] TABLESPACE tablespace_name
+      DATAFILE Datafile_Options Storage_Options ;
+
+Datafile_Options:
+
+    'filespec' [AUTOEXTEND OFF]
+    'filespec' [AUTOEXTEND ON [NEXT int K | M] [MAXSIZE int K | M]]
+
+The Autoextend Maxsize clause will default to UNLIMITED if no value is specified.
+
+Storage_Options:
+
+    DEFAULT [COMPRESS|NOCOMPRESS] STORAGE storage_clause
+    MINIMUM EXTENT int {K|M}
+    BLOCKSIZE int K
+    LOGGING | NOLOGGING
+    FORCE LOGGING
+    ONLINE | OFFLINE
+    PERMANENT | TEMPORARY
+    EXTENT MANAGEMENT {DICTIONARY |
+       LOCAL {AUTOALLOCATE | UNIFORM [SIZE int K | M]} }
+    SEGMENT SPACE MANAGEMENT {MANUAL | AUTO}
+*************************************************************************************
+
+CREATE TABLESPACE <name>
+	DATAFILE '<fname>'
+		SIZE <initial size>
+		AUTOEXTEND ON NEXT <extend by size>
+		MAXSIZE <maximum size>
+	NOLOGGING
+	PERMANENT
+	EXTENT MANAGEMENT LOCAL	UNIFORM SIZE 1M;
+
+
+*************************************************************************************
+   DROP TABLESPACE tablespace_name [INCLUDING CONTENTS [AND DATAFILES]
+      [CASCADE CONSTRAINTS]];
+
+
+
+*************************************************************************************
+
+
+
+CREATE TABLESPACE astra_120205
+	DATAFILE 'c:\db\oracle\astra_120205.dbf'
+		SIZE 50M
+		AUTOEXTEND ON NEXT 10M
+		MAXSIZE 100M
+	NOLOGGING
+	PERMANENT
+	EXTENT MANAGEMENT LOCAL	UNIFORM SIZE 1M;
+
+
+CREATE TABLESPACE astra_120205
+	DATAFILE 'c:\db\oracle\astra_120205_1.dbf',
+		SIZE 5M
+		'c:\db\oracle\astra_120205_2.dbf',
+		SIZE 50M
+		'c:\db\oracle\astra_120205_3.dbf',
+		SIZE 50M
+		'c:\db\oracle\astra_120205_4.dbf'
+		SIZE 50M
+	NOLOGGING
+	PERMANENT
+	EXTENT MANAGEMENT LOCAL	UNIFORM SIZE 1M;
+
+

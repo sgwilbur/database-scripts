@@ -1,0 +1,67 @@
+   GRANT role TO grantee;
+
+ GRANT connect,resource TO astra_asb;
+
+******************************************************************************
+ Syntax:
+
+Grant System-wide Privs:
+
+   GRANT system_priv(s) TO grantee 
+      [IDENTIFIED BY password] [WITH ADMIN OPTION]
+
+   GRANT role TO grantee 
+      [IDENTIFIED BY password] [WITH ADMIN OPTION]
+
+   GRANT ALL PRIVILEGES TO grantee 
+      [IDENTIFIED BY password] [WITH ADMIN OPTION]
+
+Grant privs on specific objects:
+
+   GRANT object_priv [(column, column,...)]
+      ON [schema.]object
+         TO grantee [WITH GRANT OPTION] [WITH HIERARCHY OPTION]
+
+   GRANT ALL PRIVILEGES [(column, column,...)]
+      ON [schema.]object
+         TO grantee [WITH GRANT OPTION] [WITH HIERARCHY OPTION]
+
+   GRANT object_priv [(column, column,...)]
+      ON DIRECTORY directory_name
+         TO grantee [WITH GRANT OPTION] [WITH HIERARCHY OPTION]
+
+   GRANT object_priv [(column, column,...)]
+      ON JAVA [RE]SOURCE [schema.]object
+         TO grantee [WITH GRANT OPTION] [WITH HIERARCHY OPTION]
+
+grantee:
+   user 
+   role
+   PUBLIC
+
+system_privs:
+   CREATE SESSION - Allows user to connect to the database
+   UNLIMITED TABLESPACE  - Use an unlimited amount of any tablespace.
+   SELECT ANY TABLE - Query tables, views, or mviews in any schema
+   UPDATE ANY TABLE - Update rows in tables and views in any schema
+   INSERT ANY TABLE - Insert rows into tables and views in any schema
+   Also System Admin rights to CREATE, ALTER or DROP:
+     cluster, context, database, link, dimension, directory, index,
+     materialized view, operator, outline, procedure, profile, role,
+     rollback segment, sequence, session, synonym, table, tablespace,
+     trigger, type, user, view. (full list of system privs)
+
+object_privs:
+   SELECT, UPDATE, INSERT, DELETE, ALTER, DEBUG, EXECUTE, INDEX, REFERENCES 
+   
+roles:
+   SYSDBA, SYSOPER, OSDBA, OSOPER, EXP_FULL_DATABASE, IMP_FULL_DATABASE
+   SELECT_CATALOG_ROLE,  EXECUTE_CATALOG_ROLE, DELETE_CATALOG_ROLE
+   AQ_USER_ROLE, AQ_ADMINISTRATOR_ROLE - advanced queuing
+   SNMPAGENT - Enterprise Manager/Intelligent Agent.
+   RECOVERY_CATALOG_OWNER - rman
+   HS_ADMIN_ROLE - heterogeneous services
+
+   plus any user defined roles you have available
+
+The roles CONNECT, RESOURCE and DBA are now deprecated (supported only for backwards compatibility) unless you are still running Oracle 6.0 use CREATE ROLE instead. Using deprecated roles is likely to result in a database installation that is not secure. Also beware of 3rd party packages that issue GRANT CONNECT instead of GRANT CREATE SESSION.

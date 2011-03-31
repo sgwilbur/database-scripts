@@ -1,0 +1,28 @@
+******************************************************************************
+  CREATE USER username
+      IDENTIFIED {BY password | EXTERNALLY | GLOBALLY AS 'external_name'}
+         options;
+
+options:
+   
+   DEFAULT TABLESPACE tablespace
+   TEMPORARY TABLESPACE tablespace
+   QUOTA int {K | M} ON tablespace
+   QUOTA UNLIMITED ON tablespace
+   PROFILE profile_name
+   PASSWORD EXPIRE
+   ACCOUNT {LOCK|UNLOCK}
+******************************************************************************
+Examples:
+
+
+CREATE USER astra_asb IDENTIFIED BY cqu
+       DEFAULT TABLESPACE astra_120205 
+       TEMPORARY TABLESPACE temp
+       QUOTA UNLIMITED ON astra_120205;
+
+
+
+
+
+

@@ -1,0 +1,38 @@
+
+Example Oracle trigger:
+
+
+CREATE OR REPLACE TRIGGER ratl_id_blocks_trigger
+AFTER INSERT OR UPDATE ON ratl_id_blocks
+DECLARE
+temp_count NUMBER;
+CURSOR ratl_id_blocks_cursor IS
+SELECT count(*) FROM ratl_id_blocks r1, ratl_id_blocks r2
+WHERE r1.type = r2.type
+AND r1.family = r2.family
+AND r1.base <= r2.limit
+AND r1.limit >= r2.base
+AND NOT (r1.base = r2.base and r1.limit = r2.limit);
+BEGIN
+IF ratl_id_blocks_cursor%ISOPEN
+THEN
+CLOSE ratl_id_blocks_cursor;
+END IF;
+
+OPEN ratl_id_blocks_cursor;
+
+LOOP
+FETCH ratl_id_blocks_cursor INTO temp_count;
+
+EXIT WHEN ratl_id_blocks_cursor%NOTFOUND;
+
+IF temp_count != 0 THEN
+RAISE_APPLICATION_ERROR (-20001,
+'Denied the attempt to insert or update an id block '||
+'since it will result in overlapping id block problem.');
+END IF;
+
+END LOOP;
+
+CLOSE ratl_id_blocks_cursor;
+END;

@@ -1,0 +1,6 @@
+
+sqlplus system/bighit@ora10 @createtablespace.sql CRT00000482_001 C:\opt\oracle\product\10.2.0\oradata\ora10\CRT00000482_001.dbf 100M 500M
+
+sqlplus system/bighit@ora10 @createuser.sql CRT00000482_001 testpass CRT00000482_001
+sqlplus system/bighit@ora10 @createuser.sql CRT00000482_002 testpass CRT00000482_001
+

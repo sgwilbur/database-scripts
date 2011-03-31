@@ -1,0 +1,8 @@
+set escape \;
+
+select * from sys.dba_users;
+
+select username, user_id, account_status, created, default_tablespace from sys.dba_users where  account_status != 'EXPIRED \& LOCKED';
+
+
+
