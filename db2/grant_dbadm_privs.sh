@@ -3,7 +3,7 @@
 # $1 - Database
 # $2 - User to grant permissions
 
-db2 connect $1
+db2 connect to $1
 db2 grant DBADM on database to USER $2
 db2 connect reset
 db2 terminate
