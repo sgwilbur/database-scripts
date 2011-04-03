@@ -7,4 +7,5 @@ fi
 
 /usr/sbin/useradd -r -d /home/db2inst1 -s /sbin/nologin ${1}
 
+echo "Remember to add to the correct DB2 user groups."
 echo "Don't forget to set this user's password now!"
