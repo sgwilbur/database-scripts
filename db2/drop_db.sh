@@ -1,4 +1,6 @@
 #!/bin/bash
 # $1 - Database to drop
-
-db2 drop database $1
+for i in "$@"
+do
+	db2 drop database $i
+done
