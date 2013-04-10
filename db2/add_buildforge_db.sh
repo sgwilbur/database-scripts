@@ -9,7 +9,7 @@ export USER=$1
 export DBNAME=$2
 
 export SCHEMA=${DBNAME}
-export DBPATH=/home/db2inst1/NODE0000/${DBNAME}
+export DBPATH=/home/db2inst1/db2inst1/NODE0000/${DBNAME}
 export DBALIAS=${DBNAME}
 
 export PAGESIZE=32K
