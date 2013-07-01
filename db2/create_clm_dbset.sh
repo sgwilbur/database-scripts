@@ -20,7 +20,7 @@ if [[ $(expr length ${ID}) > 4 ]]; then
 fi
 
 
-for db in JTS CCM QM CLDW
+for db in JTS CCM QM CLDW DM VVC
 do
 	db_name=${db}${ID}
 	echo ${db_name}	
