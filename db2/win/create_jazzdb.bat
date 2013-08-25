@@ -13,9 +13,11 @@ set USER=%2%
 
 set PAGESIZE=32768
 
-db2 create database %DBNAME% on %DB2_DRIVE%: using codeset UTF-8 territory en PAGESIZE %PAGESIZE%
+db2 create database %DBNAME% AUTOMATIC STORAGE YES on %DB2_DRIVE%: using codeset UTF-8 territory en PAGESIZE %PAGESIZE%
 
 db2 CONNECT TO %DBNAME%
+db2 grant dbadm on database to user %USER%
+
 db2 CREATE SCHEMA %SCHEMA%
 db2 SET CURRENT SCHEMA = %SCHEMA%
 db2 GRANT AlTERIN, CREATEIN, DROPIN ON SCHEMA %SCHEMA% TO %USER%
