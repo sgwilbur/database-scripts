@@ -14,5 +14,5 @@ CREATE USER &1 IDENTIFIED BY &2
        TEMPORARY TABLESPACE temp
        QUOTA UNLIMITED ON &3;
 
-GRANT connect,resource TO &1;
+GRANT connect,resource, create session, create tables TO &1;
 
